@@ -23,13 +23,13 @@ enum GamerBitPin {
     //% block="Y button"
     P2 = DAL.MICROBIT_ID_IO_P2,
     //% block="D-PAD up"
-    P8 = DAL.MICROBIT_ID_IO_P8,
+    P15 = DAL.MICROBIT_ID_IO_P15,
     //% block="D-PAD down"
     P13 = DAL.MICROBIT_ID_IO_P13,
     //% block="D-PAD left"
-    P14 = DAL.MICROBIT_ID_IO_P14,
+    P16 = DAL.MICROBIT_ID_IO_P16,
     //% block="D-PAD right"
-    P15 = DAL.MICROBIT_ID_IO_P15,
+    P14 = DAL.MICROBIT_ID_IO_P14,
 }
 
 /**
@@ -90,8 +90,8 @@ namespace gamePad {
         pins.setPull(DigitalPin.P13, PinPullMode.PullNone);
         pins.setPull(DigitalPin.P14, PinPullMode.PullNone);
         pins.setPull(DigitalPin.P15, PinPullMode.PullNone);
-        pins.setPull(DigitalPin.P0, PinPullMode.PullUp);
-        pins.setPull(DigitalPin.P16, PinPullMode.PullUp);
+        pins.setPull(DigitalPin.P0, PinPullMode.PullNone);
+        pins.setPull(DigitalPin.P16, PinPullMode.PullNone);
         PIN_INIT = 1;
         return;
     }
@@ -154,18 +154,5 @@ namespace gamePad {
         let num = degree * 4;
         pins.analogWritePin(AnalogPin.P12, <number>num);
         return;
-    }
-
-    /**
-     * LED indicator light switch.
-     */
-    //% weight=20
-    //% blockId=gamePad_led block="LED|%index|"
-    //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2
-    export function led(index: Led): void {
-        if (!PIN_INIT) { 
-            PinInit();
-        }
-        pins.digitalWritePin(DigitalPin.P16, <number>index);
     }
 }
